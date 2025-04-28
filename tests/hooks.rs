@@ -14,6 +14,7 @@ fn list() {
     let sub_result = client.subscribe(HookSubscribeParams {
         event_filter: None,
         event_type: EventType::VoiceStatus,
+        headers: None,
         request_method: None,
         target_url: format!("https://rust.tld/{}", rand_str(16)),
     });
@@ -43,6 +44,7 @@ fn subscribe() {
     let result = client.subscribe(HookSubscribeParams {
         event_filter: None,
         event_type: EventType::VoiceStatus,
+        headers: None,
         request_method: None,
         target_url: format!("https://rust.tld/{}", rand_str(16)),
     });
@@ -61,6 +63,7 @@ fn unsubscribe() {
     let result = client.subscribe(HookSubscribeParams {
         event_filter: None,
         event_type: EventType::VoiceStatus,
+        headers: None,
         request_method: None,
         target_url: format!("https://rust.tld/{}", rand_str(16)),
     });

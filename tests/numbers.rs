@@ -133,15 +133,16 @@ fn update() {
         payment_interval: Option::from(Monthly),
     }).unwrap();
 
+    let friendly_name = Option::from("Friendly Name".to_string());
     let params = UpdateNumberParams {
         email_forward: None,
-        friendly_name: Option::from("Friendly Name".to_string()),
+        friendly_name: friendly_name.clone(),
         number: offer.number.clone(),
         sms_forward: None,
     };
     let result = client.update(params).unwrap();
 
-    assert_eq!(result.friendly_name, params.friendly_name.unwrap());
+    assert_eq!(result.friendly_name, friendly_name.unwrap());
 
     clean_up(offer).unwrap();
 }

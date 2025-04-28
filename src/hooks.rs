@@ -93,8 +93,10 @@ impl Default for EventType {
 #[derive(Debug, Deserialize)]
 pub struct Hook {
     pub created: String,
+    pub enabled: bool,
     pub event_filter: Option<String>,
     pub event_type: EventType,
+    pub headers: String,
     pub id: String,
     pub request_method: HookRequestMethod,
     pub target_url: String,
@@ -110,6 +112,7 @@ pub struct HooksList {
 pub struct HookSubscribeParams {
     pub event_filter: Option<String>,
     pub event_type: EventType,
+    pub headers: Option<String>,
     pub request_method: Option<HookRequestMethod>,
     pub target_url: String,
 }
@@ -153,6 +156,7 @@ impl Hooks {
             .send_form(&[
                 ("event_filter", &*params.event_filter.unwrap_or_default()),
                 ("event_type", params.event_type.as_str()),
+                ("headers", &*params.headers.unwrap_or_default()),
                 ("request_method", &*params.request_method.unwrap_or_default().to_string()),
                 ("target_url", &*params.target_url),
             ])?
